@@ -905,6 +905,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3651208732218313999, guid: e851a83b56915504bbd65a1b36937a81, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 3651208732218314037, guid: e851a83b56915504bbd65a1b36937a81, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3943,9 +3947,9 @@ GameObject:
   - component: {fileID: 1627480535}
   - component: {fileID: 1627480530}
   - component: {fileID: 1627480529}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ZooKeeper
-  m_TagString: Untagged
+  m_TagString: Zookeeper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -111,6 +111,21 @@ public class PlayerController : MonoBehaviour
             isMoving = true;
         }
 
+        // code to rotate the player
+        // rotating clockwise
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.Rotate(new Vector3(0.0f, 0.25f, 0.0f));
+            // rb.rotation;
+        }
+
+        // rotating counter-clockwise
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            transform.Rotate(new Vector3(0.0f, -0.25f, 0.0f));
+            // rb.rotation;
+        }
+
         /*
         // jumping not working atm
         if (Input.GetKeyDown(KeyCode.Space))
@@ -146,8 +161,9 @@ public class PlayerController : MonoBehaviour
         // Barking
         if (Input.GetKey(KeyCode.E))
         {
-            // check the sphere with range, whoever is in that spehere acts accoringly, also play sound
-            Collider[] closeObjects = Physics.OverlapSphere(transform.position, soundRadius, 0);
+            // need to use LayerMask.GetMask to get the proper int
+            int LM = LayerMask.GetMask("Npc");
+            Collider[] closeObjects = Physics.OverlapSphere(transform.position, soundRadius, LM);
 
             // loops trhough the objects and changes their state
             for(int i = 0; i < closeObjects.Length; i++)
@@ -174,13 +190,15 @@ public class PlayerController : MonoBehaviour
             // set canAction to false so the CD starts
             canAction = false;
 
-            Debug.Log("Barked");
+            // Debug.Log("Barked");
         }
 
         // clapping
         if(Input.GetKeyDown(KeyCode.Q))
         {
-            Collider[] closeObjects = Physics.OverlapSphere(transform.position, soundRadius, 0);
+            // need to use LayerMask.GetMask to get the proper int
+            int LM = LayerMask.GetMask("Npc");
+            Collider[] closeObjects = Physics.OverlapSphere(transform.position, soundRadius, LM);
 
             // for guest change state to attracted
             // loops trhough the objects and changes their state
@@ -208,19 +226,7 @@ public class PlayerController : MonoBehaviour
             // set canAction to false so the CD starts
             canAction = false;
 
-            Debug.Log("Clapped");
-        }
-
-        // Eating
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            // here is where I pop in a method to eat food and gain points or something
-            Eat();
-
-            // set canAction to false so the CD starts
-            canAction = false;
-
-            Debug.Log("Ate");
+            // Debug.Log("Clapped");
         }
     }
 
@@ -230,9 +236,30 @@ public class PlayerController : MonoBehaviour
     /// Returns: None
     /// This is a helper method to check collisions with food, delte the food, and give the player points. 
     /// </summary>
-    public void Eat()
+    public void Eat(GameObject food)
     {
         // might need to add button check in OnCollisionEnter()
-        // also in onCollisionenter, teleport player to their cage
+
+        canAction = false;
+    }
+
+    // does all collision detection between player and zookeeper
+    // also checks key press for eating
+    public void OnCollisionEnter(Collision collision)
+    {
+        // if colliding with the zookeeper, just sends you back to the start location
+        if(collision.collider.tag == "Zookeeper")
+        {
+            transform.position = startPos;
+        }
+
+        // if the eat key is pressed and it's collidiing with food, call Eat()
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            if(collision.collider.tag == "Food")
+            {
+                Eat(collision.gameObject);
+            }
+        }
     }
 }
