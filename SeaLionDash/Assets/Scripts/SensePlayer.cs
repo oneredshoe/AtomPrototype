@@ -32,6 +32,8 @@ public class SensePlayer : MonoBehaviour
         return Vector3.Distance(player.transform.position, transform.position) < Radius;
     }
 
+
+    //Code from Youtube channle Sebastian Lague https://www.youtube.com/watch?v=rQG9aUWarwE&t=776s
     private Vector3 DirFromAngle(float angleInDegrees, bool anlgeIsGlobal)
     {
         if (!anlgeIsGlobal)
