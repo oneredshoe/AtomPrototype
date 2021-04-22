@@ -96,7 +96,7 @@ public class Guest : Vehicle
     }
 
     //Spawn food
-    void GiveFood()
+    public void GiveFood()
     {
         if (state != GuestState.Wander)
         {

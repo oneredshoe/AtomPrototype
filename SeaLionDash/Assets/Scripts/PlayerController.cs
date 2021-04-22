@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
     public bool isRunning;
     public float maxSpeed;
     public float soundRadius;
+    public Vector3 startPos;
+    public const float CD_TIME = 1.0f;
+    public float cdTimer;
+    public bool canAction;
 
 
     // Start is called before the first frame update
@@ -26,6 +30,9 @@ public class PlayerController : MonoBehaviour
         speed = 3.0f;
         maxSpeed = 6.0f;
         soundRadius = 15.0f;
+        startPos = Vector3.zero;
+        cdTimer = 0.0f;
+        canAction = true;
     }
 
     // Update is called once per frame
@@ -34,7 +41,22 @@ public class PlayerController : MonoBehaviour
         position = transform.position;
         isMoving = false;
         Move();
-        ProcessActions();
+
+        // if the timer has reset itself
+        if(canAction == true)
+        {
+            ProcessActions();
+        }
+        else
+        {
+            cdTimer += Time.deltaTime;
+        }
+
+        if(cdTimer >= CD_TIME)
+        {
+            cdTimer = 0.0f;
+            canAction = true;
+        }
     }
 
     /// <summary>
@@ -124,13 +146,69 @@ public class PlayerController : MonoBehaviour
         // Barking
         if (Input.GetKey(KeyCode.E))
         {
-            // here is where I play a sound byte and send info to NPC's inside my range
+            // check the sphere with range, whoever is in that spehere acts accoringly, also play sound
+            Collider[] closeObjects = Physics.OverlapSphere(transform.position, soundRadius, 0);
+
+            // loops trhough the objects and changes their state
+            for(int i = 0; i < closeObjects.Length; i++)
+            {
+                // if get component zookeeper, then change state
+                if(closeObjects[i].GetComponent<Zookeeper>() != null)
+                {
+                    // runs away in fear
+                    closeObjects[i].GetComponent<Zookeeper>().state = Zookeeper.KeeperState.Flee;
+                }
+
+                // if get componnet guest then change state
+                if (closeObjects[i].GetComponent<Guest>() != null)
+                {
+                    // throws food for the player to eat
+                    closeObjects[i].GetComponent<Guest>().GiveFood();
+                }
+            }
+
+            //play sound byte
+            //audioSource.clip = barkClip;
+            //audioSource.Play();
+
+            // set canAction to false so the CD starts
+            canAction = false;
+
+            Debug.Log("Barked");
         }
 
         // clapping
         if(Input.GetKeyDown(KeyCode.Q))
         {
-            // here is where I play a sound byte and send info to NPC's inside my range
+            Collider[] closeObjects = Physics.OverlapSphere(transform.position, soundRadius, 0);
+
+            // for guest change state to attracted
+            // loops trhough the objects and changes their state
+            for (int i = 0; i < closeObjects.Length; i++)
+            {
+                // if get component zookeeper, then change state
+                if (closeObjects[i].GetComponent<Zookeeper>() != null)
+                {
+                    // chases the player
+                    closeObjects[i].GetComponent<Zookeeper>().state = Zookeeper.KeeperState.Chase;
+                }
+
+                // if get componnet guest then change state
+                if (closeObjects[i].GetComponent<Guest>() != null)
+                {
+                    // attracted to player
+                    closeObjects[i].GetComponent<Guest>().state = Guest.GuestState.Attracted;
+                }
+            }
+
+            // play sound byte
+            //audioSource.clip = clapClip;
+            //audioSource.Play();
+
+            // set canAction to false so the CD starts
+            canAction = false;
+
+            Debug.Log("Clapped");
         }
 
         // Eating
@@ -138,6 +216,11 @@ public class PlayerController : MonoBehaviour
         {
             // here is where I pop in a method to eat food and gain points or something
             Eat();
+
+            // set canAction to false so the CD starts
+            canAction = false;
+
+            Debug.Log("Ate");
         }
     }
 
@@ -149,6 +232,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void Eat()
     {
-
+        // might need to add button check in OnCollisionEnter()
+        // also in onCollisionenter, teleport player to their cage
     }
 }

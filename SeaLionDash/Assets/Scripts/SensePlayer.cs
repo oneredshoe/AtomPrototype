@@ -13,6 +13,12 @@ public class SensePlayer : MonoBehaviour
     [Range(1f, 20f)]
     public float Radius;
 
+    void Start()
+    {
+        // sets player via code
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
     //SensePlayer is a modual used to check if player is in a specified range of a object
 
     public bool PlayerInFOV()
