@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using UnityEngine;
 
 public class SensePlayer : MonoBehaviour
@@ -31,8 +32,12 @@ public class SensePlayer : MonoBehaviour
         return Vector3.Distance(player.transform.position, transform.position) < Radius;
     }
 
-    private Vector3 DirFromAngle(float angleInDegrees)
+    private Vector3 DirFromAngle(float angleInDegrees, bool anlgeIsGlobal)
     {
+        if (!anlgeIsGlobal)
+        {
+            angleInDegrees += transform.eulerAngles.y;
+        }
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
     }
 
@@ -42,7 +47,7 @@ public class SensePlayer : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, Radius);
 
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, transform.position + DirFromAngle(FOV / 2) * Radius);
-        Gizmos.DrawLine(transform.position, transform.position + DirFromAngle(-FOV / 2) * Radius);
+        Gizmos.DrawLine(transform.position, transform.position + DirFromAngle(FOV / 2, false) * Radius);
+        Gizmos.DrawLine(transform.position, transform.position + DirFromAngle(-FOV / 2, false) * Radius);
     }
 }
