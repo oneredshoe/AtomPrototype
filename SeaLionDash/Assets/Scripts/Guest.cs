@@ -13,12 +13,10 @@ public class Guest : Vehicle
 
     [Header("Guest Stats")]
     public GuestState state;
+
     [SerializeField]
-    [Range(5f, 20f)]
+    [Range(3f, 10f)]
     private float attractDuration;
-    [SerializeField]
-    [Range(3f, 20f)]
-    private float watchDistance;
     private float attractTimer;
 
     private SensePlayer senser;
@@ -33,43 +31,57 @@ public class Guest : Vehicle
     // Update is called once per frame
     void Update()
     {
+        //for debug
         if (Input.GetKeyDown(KeyCode.K))
         {
             state = GuestState.Attracted;
         }
+
         switch (state)
         {
             case GuestState.Idle:
+
+                //make sure to face player
                 FacePlayer();
-                Move();
+
+                //update attraction timer
                 UpdateAttaction();
+
                 break;
             case GuestState.Wander:
+
+                //wander
                 Wandering();
+
                 break;
             case GuestState.Attracted:
-                SeekTarget(player);
-                if(Vector3.Distance(transform.position, player.transform.position) < watchDistance)
+
+                //seek player
+                SeekTarget(senser.player);
+
+                //if player in range, go to idle stage
+                if (senser.PlayerInRadius())
                 {
                     state = GuestState.Idle;
                 }
+
+                //update attraction timer
                 UpdateAttaction();
+
+                break;
+            default:
                 break;
         }
     }
-    private void StayNearPlayer()
-    {
-        acc += Seek(player.transform.position + (player.transform.position - transform.position).normalized * watchDistance);
 
-        Move();
-    }
-
+    //Force object face player
     private void FacePlayer()
     {
-        if(Vector3.Dot(transform.forward, (player.transform.position - transform.position).normalized) < 0.95f)
+        if (Vector3.Dot(transform.forward, (senser.player.transform.position - transform.position).normalized) < 0.98f)
         {
-            acc += Seek(player);
+            acc += Seek(senser.player);
         }
+        Move();
     }
 
     //Update attraction timer
@@ -90,12 +102,5 @@ public class Guest : Vehicle
         {
             //do things
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        base.OnDrawGizmos();
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, watchDistance);
     }
 }

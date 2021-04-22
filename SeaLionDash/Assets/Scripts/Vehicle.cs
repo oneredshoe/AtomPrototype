@@ -76,8 +76,6 @@ public class Vehicle : MonoBehaviour
     private CharacterController controller;
     private float height;
 
-    public GameObject player;
-
     // Start is called before the first frame update
     protected void Start()
     {
@@ -191,6 +189,8 @@ public class Vehicle : MonoBehaviour
 
     virtual protected void Wandering()
     {
+        acc += ObstacleAvoidance();
+
         acc += Wander();
 
         Move();

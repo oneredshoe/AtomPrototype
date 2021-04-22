@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 52bf8ca4cb407f04699fe273f7dc19cc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -130,33 +130,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  friction: 1.686
+  friction: 1.5
   minVel: 0.1
   blockMask:
     serializedVersion: 2
     m_Bits: 256
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 256
-  obsDetecDistance: 1.74
+    m_Bits: 1792
+  obsDetecDistance: 2.56
   obsDetecWidth: 1.366
-  obsAvoidForce: 5.62
+  obsAvoidForce: 4
   wallMask:
     serializedVersion: 2
-    m_Bits: 256
-  wallDetecDistance: 1
+    m_Bits: 0
+  wallDetecDistance: 0.1
   wallDetecWidth: 0.1
-  wallFollowForce: 0
-  wanderDistance: 4.07
-  wanderRadius: 1.88
-  wanderChangeTime: 4.96
-  wanderTimeOffset: 1.454
-  angleChangeTime: 0.84
-  angleSize: 0.29
-  player: {fileID: 0}
+  wallFollowForce: 1
+  wanderDistance: 4
+  wanderRadius: 1.5
+  wanderChangeTime: 4.5
+  wanderTimeOffset: 2
+  angleChangeTime: 0.33
+  angleSize: 0.25
   state: 0
   attractDuration: 5
-  watchDistance: 6.03
 --- !u!114 &3199451423217544132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,5 +168,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  FOV: 0
-  Radius: 0
+  FOV: 90
+  Radius: 7.5
