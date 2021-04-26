@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public const float CD_TIME = 1.0f;
     public float cdTimer;
     public bool canAction;
+    public int fishEaten;
 
 
     // Start is called before the first frame update
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
         startPos = Vector3.zero;
         cdTimer = 0.0f;
         canAction = true;
+        fishEaten = 0;
     }
 
     // Update is called once per frame
@@ -89,11 +91,10 @@ public class PlayerController : MonoBehaviour
             isMoving = true;
         }
 
-        // moving left
+        // rotating counter-clockwise
         if (Input.GetKey(KeyCode.A))
         {
-            rb.AddForce(-transform.right * speed);
-            isMoving = true;
+            transform.Rotate(new Vector3(0.0f, -0.25f, 0.0f));
         }
 
         // moving backwards
@@ -103,37 +104,11 @@ public class PlayerController : MonoBehaviour
             isMoving = true;
         }
 
-
-        // moving right
+        // rotating clockwise
         if (Input.GetKey(KeyCode.D))
         {
-            rb.AddForce(transform.right * speed);
-            isMoving = true;
-        }
-
-        // code to rotate the player
-        // rotating clockwise
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
             transform.Rotate(new Vector3(0.0f, 0.25f, 0.0f));
-            // rb.rotation;
         }
-
-        // rotating counter-clockwise
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            transform.Rotate(new Vector3(0.0f, -0.25f, 0.0f));
-            // rb.rotation;
-        }
-
-        /*
-        // jumping not working atm
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            rb.AddForce(transform.up * 5.0f);
-            isMoving = true;
-        }
-        */
 
         // clamps velocity
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
@@ -241,6 +216,8 @@ public class PlayerController : MonoBehaviour
         // might need to add button check in OnCollisionEnter()
 
         canAction = false;
+        Destroy(food);
+        fishEaten++;
     }
 
     // does all collision detection between player and zookeeper

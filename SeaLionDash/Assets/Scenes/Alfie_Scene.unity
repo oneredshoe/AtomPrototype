@@ -5163,6 +5163,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 8070160604782257688, guid: d22db557135d42e4eae1484bfbb993aa, type: 3}
+      propertyPath: m_TagString
+      value: Zookeeper
+      objectReference: {fileID: 0}
     - target: {fileID: 8070160604782257694, guid: d22db557135d42e4eae1484bfbb993aa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 28
