@@ -21776,7 +21776,7 @@ GameObject:
   - component: {fileID: 1606850331}
   - component: {fileID: 1606850333}
   - component: {fileID: 1606850332}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Ocean50x50W750H750
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31043,54 +31043,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 322800717231595541, guid: 9d8e2ee4ce3a61a49ba4299c05ed6e1c, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.000018537152
-      objectReference: {fileID: 0}
-    - target: {fileID: 322800717231595541, guid: 9d8e2ee4ce3a61a49ba4299c05ed6e1c, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 322800717231595541, guid: 9d8e2ee4ce3a61a49ba4299c05ed6e1c, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.000018537152
-      objectReference: {fileID: 0}
-    - target: {fileID: 322800717231595541, guid: 9d8e2ee4ce3a61a49ba4299c05ed6e1c, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 322800717231595541, guid: 9d8e2ee4ce3a61a49ba4299c05ed6e1c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 322800717231595541, guid: 9d8e2ee4ce3a61a49ba4299c05ed6e1c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 322800717231595541, guid: 9d8e2ee4ce3a61a49ba4299c05ed6e1c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.003
-      objectReference: {fileID: 0}
-    - target: {fileID: 8231440652832417273, guid: 9d8e2ee4ce3a61a49ba4299c05ed6e1c, type: 3}
-      propertyPath: m_Size.y
-      value: 2.3672514
-      objectReference: {fileID: 0}
-    - target: {fileID: 8231440652832417273, guid: 9d8e2ee4ce3a61a49ba4299c05ed6e1c, type: 3}
-      propertyPath: m_Center.y
-      value: 0.039607525
-      objectReference: {fileID: 0}
-    - target: {fileID: 8231440652832417273, guid: 9d8e2ee4ce3a61a49ba4299c05ed6e1c, type: 3}
-      propertyPath: m_Size.x
-      value: 2.258049
-      objectReference: {fileID: 0}
-    - target: {fileID: 8231440652832417273, guid: 9d8e2ee4ce3a61a49ba4299c05ed6e1c, type: 3}
-      propertyPath: m_Center.x
-      value: 0.15748596
-      objectReference: {fileID: 0}
-    - target: {fileID: 8231440652832417275, guid: 9d8e2ee4ce3a61a49ba4299c05ed6e1c, type: 3}
-      propertyPath: m_Constraints
-      value: 116
-      objectReference: {fileID: 0}
     - target: {fileID: 8480641847889059432, guid: 9d8e2ee4ce3a61a49ba4299c05ed6e1c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 46.89

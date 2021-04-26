@@ -83,6 +83,7 @@ MonoBehaviour:
   angleChangeTime: 0.33
   angleSize: 0.25
   state: 0
+  food: {fileID: 8073442205734318692, guid: e28d0e8786a13bd41a0b144b69599950, type: 3}
   attractDuration: 5
 --- !u!1001 &3513916351132590454
 PrefabInstance:
@@ -221,7 +222,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 22db55d9aded64c498405743c6e0925b, type: 3}
       propertyPath: m_Name
-      value: Guest (5)
+      value: Guest Variant
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 22db55d9aded64c498405743c6e0925b, type: 3}
       propertyPath: m_Layer

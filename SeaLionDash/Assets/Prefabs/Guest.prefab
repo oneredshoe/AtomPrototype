@@ -154,6 +154,7 @@ MonoBehaviour:
   angleChangeTime: 0.33
   angleSize: 0.25
   state: 0
+  food: {fileID: 8073442205734318692, guid: e28d0e8786a13bd41a0b144b69599950, type: 3}
   attractDuration: 5
 --- !u!114 &3199451423217544132
 MonoBehaviour:

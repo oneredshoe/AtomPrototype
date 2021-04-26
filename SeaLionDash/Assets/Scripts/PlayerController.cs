@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
         Move();
 
         // if the timer has reset itself
-        if(canAction == true)
+        if (canAction == true)
         {
             ProcessActions();
         }
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
             cdTimer += Time.deltaTime;
         }
 
-        if(cdTimer >= CD_TIME)
+        if (cdTimer >= CD_TIME)
         {
             cdTimer = 0.0f;
             canAction = true;
@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
         // rotating counter-clockwise
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Rotate(new Vector3(0.0f, -0.25f, 0.0f));
+            transform.Rotate(new Vector3(0.0f, -0.5f, 0.0f));
         }
 
         // moving backwards
@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
         // rotating clockwise
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Rotate(new Vector3(0.0f, 0.25f, 0.0f));
+            transform.Rotate(new Vector3(0.0f, 0.5f, 0.0f));
         }
 
         // clamps velocity
@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour
         if (isMoving == false)
         {
             rb.velocity *= 0.95f;
-            if(rb.velocity.magnitude <= 0.0001f)
+            if (rb.velocity.magnitude <= 0.0001f)
             {
                 rb.velocity = Vector3.zero;
             }
@@ -134,17 +134,17 @@ public class PlayerController : MonoBehaviour
     public void ProcessActions()
     {
         // Barking
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             // need to use LayerMask.GetMask to get the proper int
             int LM = LayerMask.GetMask("Npc");
             Collider[] closeObjects = Physics.OverlapSphere(transform.position, soundRadius, LM);
 
             // loops trhough the objects and changes their state
-            for(int i = 0; i < closeObjects.Length; i++)
+            for (int i = 0; i < closeObjects.Length; i++)
             {
                 // if get component zookeeper, then change state
-                if(closeObjects[i].GetComponent<Zookeeper>() != null)
+                if (closeObjects[i].GetComponent<Zookeeper>() != null)
                 {
                     // runs away in fear
                     closeObjects[i].GetComponent<Zookeeper>().state = Zookeeper.KeeperState.Flee;
@@ -169,7 +169,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // clapping
-        if(Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             // need to use LayerMask.GetMask to get the proper int
             int LM = LayerMask.GetMask("Npc");
@@ -182,8 +182,9 @@ public class PlayerController : MonoBehaviour
                 // if get component zookeeper, then change state
                 if (closeObjects[i].GetComponent<Zookeeper>() != null)
                 {
-                    // chases the player
-                    closeObjects[i].GetComponent<Zookeeper>().state = Zookeeper.KeeperState.Chase;
+                    // chases the player if not on flee
+                    if (closeObjects[i].GetComponent<Zookeeper>().state != Zookeeper.KeeperState.Flee)
+                        closeObjects[i].GetComponent<Zookeeper>().state = Zookeeper.KeeperState.Chase;
                 }
 
                 // if get componnet guest then change state
@@ -216,26 +217,26 @@ public class PlayerController : MonoBehaviour
         // might need to add button check in OnCollisionEnter()
 
         canAction = false;
-        Destroy(food);
+        food.SetActive(false);
         fishEaten++;
     }
 
     // does all collision detection between player and zookeeper
     // also checks key press for eating
-    public void OnCollisionEnter(Collision collision)
+    public void OnTriggerStay(Collider other)
     {
         // if colliding with the zookeeper, just sends you back to the start location
-        if(collision.collider.tag == "Zookeeper")
+        if (other.tag == "Zookeeper")
         {
             transform.position = startPos;
         }
 
         // if the eat key is pressed and it's collidiing with food, call Eat()
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if(collision.collider.tag == "Food")
+            if (other.tag == "Food")
             {
-                Eat(collision.gameObject);
+                Eat(other.gameObject);
             }
         }
     }

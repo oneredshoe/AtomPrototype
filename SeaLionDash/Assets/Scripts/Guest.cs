@@ -13,6 +13,7 @@ public class Guest : Vehicle
 
     [Header("Guest Stats")]
     public GuestState state;
+    public GameObject food;
 
     [SerializeField]
     [Range(3f, 10f)]
@@ -77,7 +78,7 @@ public class Guest : Vehicle
     //Force object face player
     private void FacePlayer()
     {
-        if (Vector3.Dot(transform.forward, (senser.player.transform.position - transform.position).normalized) < 0.98f)
+        if (Vector3.Dot(transform.forward, (senser.player.transform.position - transform.position).normalized) < 0.95f)
         {
             acc += Seek(senser.player);
         }
@@ -100,7 +101,7 @@ public class Guest : Vehicle
     {
         if (state != GuestState.Wander)
         {
-            //do things
+            Instantiate(food, transform.position + transform.forward, Quaternion.identity);
         }
     }
 }
