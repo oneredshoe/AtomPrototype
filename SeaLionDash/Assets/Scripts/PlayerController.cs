@@ -28,8 +28,8 @@ public class PlayerController : MonoBehaviour
         audioSource = gameObject.GetComponent<AudioSource>();
         isMoving = false;
         gameManagerObj = GameObject.Find("GameManager");
-        speed = 3.0f;
-        maxSpeed = 6.0f;
+        speed = 5.0f;
+        maxSpeed = 7.5f;
         soundRadius = 15.0f;
         startPos = Vector3.zero;
         cdTimer = 0.0f;
@@ -73,14 +73,14 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             isRunning = true;
-            speed = 4.5f;
-            maxSpeed = 9.0f;
+            speed = 6.5f;
+            maxSpeed = 10.0f;
         }
         else
         {
             isRunning = false;
-            speed = 3.0f;
-            maxSpeed = 6.0f;
+            speed = 5.0f;
+            maxSpeed = 7.5f;
         }
 
 
