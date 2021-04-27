@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
         speed = 5.0f;
         maxSpeed = 7.5f;
         soundRadius = 15.0f;
-        startPos = Vector3.zero;
+        startPos = transform.position;
         cdTimer = 0.0f;
         canAction = true;
         fishEaten = 0;
@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
         // rotating counter-clockwise
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Rotate(new Vector3(0.0f, -0.5f, 0.0f));
+            transform.Rotate(new Vector3(0.0f, -1f, 0.0f));
         }
 
         // moving backwards
@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
         // rotating clockwise
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Rotate(new Vector3(0.0f, 0.5f, 0.0f));
+            transform.Rotate(new Vector3(0.0f, 1f, 0.0f));
         }
 
         // clamps velocity

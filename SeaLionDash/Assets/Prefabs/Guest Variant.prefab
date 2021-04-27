@@ -66,10 +66,10 @@ MonoBehaviour:
     m_Bits: 256
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 256
-  obsDetecDistance: 2.56
-  obsDetecWidth: 1.366
-  obsAvoidForce: 4
+    m_Bits: 1792
+  obsDetecDistance: 2.17
+  obsDetecWidth: 2
+  obsAvoidForce: 8
   wallMask:
     serializedVersion: 2
     m_Bits: 0
@@ -80,8 +80,8 @@ MonoBehaviour:
   wanderRadius: 1.5
   wanderChangeTime: 4.5
   wanderTimeOffset: 2
-  angleChangeTime: 0.33
-  angleSize: 0.25
+  angleChangeTime: 0.1
+  angleSize: 0.3
   state: 0
   food: {fileID: 8073442205734318692, guid: e28d0e8786a13bd41a0b144b69599950, type: 3}
   attractDuration: 5
@@ -139,6 +139,18 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 22db55d9aded64c498405743c6e0925b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 22db55d9aded64c498405743c6e0925b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 22db55d9aded64c498405743c6e0925b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 22db55d9aded64c498405743c6e0925b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: -8156986795448229258, guid: 22db55d9aded64c498405743c6e0925b, type: 3}
       propertyPath: m_Layer

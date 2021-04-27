@@ -96,4 +96,12 @@ public class Zookeeper : Vehicle
                 break;
         }   
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            other.transform.position = other.GetComponent<PlayerController>().startPos;
+        }
+    }
 }
