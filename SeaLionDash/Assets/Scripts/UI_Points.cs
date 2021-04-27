@@ -6,17 +6,17 @@ using UnityEngine.UI;
 public class UI_Points : MonoBehaviour
 {
     public Text m_MyText;
-    public int m_points;
+    public PlayerController pc;
+
 
     void Start()
     {
-        m_points = 0;
-        //Text sets your text to say this message
-        m_MyText.text = "" +  m_points;
+        pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     void Update()
     {
-        m_MyText.text = "" + m_points;
+
+        m_MyText.text = "" + pc.fishEaten;
     }
 }
