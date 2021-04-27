@@ -78,9 +78,9 @@ public class Guest : Vehicle
     //Force object face player
     private void FacePlayer()
     {
-        if (Vector3.Dot(transform.forward, (senser.player.transform.position - transform.position).normalized) < 0.95f)
+        if (Vector3.Dot(transform.forward, (senser.player.transform.position - transform.position).normalized) < 0.93f)
         {
-            acc += Seek(senser.player);
+            acc += Seek(senser.player) * 0.5f;
         }
         Move();
     }
